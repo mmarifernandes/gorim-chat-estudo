@@ -1,4 +1,7 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
+
 
 dados = open('logs.csv', mode='r', encoding='utf-8').read()
 teste = dados.split('\n')
@@ -45,6 +48,17 @@ for i in range(len(teste)):
     if 'Mestre' in teste[i]:
         mestre+=1
 
-print(f'emp semente:',emp_semente,'emp fertilizantes:',emp_fertilizante,'emp agrotoxicos:',emp_agrotoxico,'emp maquinas:',emp_maquinas)
-print(f'prefeito atlantis:',prefeito_at,'prefeito cidadela:',prefeito_cid,'vereador atlantis:',vereador_at,'vereador cidadela:',vereador_cid)
-print(f'fiscal atlantis:',fiscal_at,'fiscal cidadela:',fiscal_cid,'agricultor atlantis:',agricultor_at,'agricultor cidadela:',agricultor_cid,'mestre:',mestre)
+
+data = {'emp sementes': emp_semente, 'emp fertilizantes': emp_fertilizante, 'emp maquinas': emp_maquinas, 'emp agrotoxicos': emp_agrotoxico, 'prefeito atlantis': prefeito_at, 'prefeito cidadela': prefeito_cid, 'vereador atlantis': vereador_at, 'vereador cidadela': vereador_cid, 'fiscal atlantis': fiscal_at, 'fiscal cidadela': fiscal_cid, 'agricultor atlantis': agricultor_at, 'agricultor cidadela': agricultor_cid, 'mestre': mestre}
+names = list(data.keys())
+values = list(data.values())
+
+fig, ax = plt.subplots()
+bar_container = ax.bar(names, values)
+ax.set(ylabel='nro de vezes que mandou mensagem', title='Quantidade de mensagens enviadas')
+ax.bar_label(bar_container, fmt='{:,.0f}')
+plt.show()  
+
+# print(f'emp semente:',emp_semente,'emp fertilizantes:',emp_fertilizante,'emp agrotoxicos:',emp_agrotoxico,'emp maquinas:',emp_maquinas)
+# print(f'prefeito atlantis:',prefeito_at,'prefeito cidadela:',prefeito_cid,'vereador atlantis:',vereador_at,'vereador cidadela:',vereador_cid)
+# print(f'fiscal atlantis:',fiscal_at,'fiscal cidadela:',fiscal_cid,'agricultor atlantis:',agricultor_at,'agricultor cidadela:',agricultor_cid,'mestre:',mestre)
